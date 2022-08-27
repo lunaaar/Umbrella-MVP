@@ -19,6 +19,7 @@ public class Jump : MonoBehaviour
 
     private bool desiredJump;
     private bool onGround;
+    private bool inWind;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,6 +28,7 @@ public class Jump : MonoBehaviour
         ground = GetComponent<Ground>();
 
         defaultGravityScale = 1f;
+        inWind = false;
     }
 
     // Update is called once per frame
@@ -51,17 +53,24 @@ public class Jump : MonoBehaviour
             JumpAction();
         }
 
-        if(rigidBody.velocity.y > 0)
-        {
-            rigidBody.gravityScale = upwardMovementMultiplier;
-        }
-        else if(rigidBody.velocity.y < 0)
-        {
-            rigidBody.gravityScale = downwardMovementMultiplier;
-        }
-        else if(rigidBody.velocity.y == 0)
+        if (inWind)
         {
             rigidBody.gravityScale = defaultGravityScale;
+        }
+        else
+        {
+            if (rigidBody.velocity.y > 0)
+            {
+                rigidBody.gravityScale = upwardMovementMultiplier;
+            }
+            else if (rigidBody.velocity.y < 0)
+            {
+                rigidBody.gravityScale = downwardMovementMultiplier;
+            }
+            else if (rigidBody.velocity.y == 0)
+            {
+                rigidBody.gravityScale = defaultGravityScale;
+            }
         }
 
         rigidBody.velocity = velocity;
@@ -79,6 +88,22 @@ public class Jump : MonoBehaviour
             }
 
             velocity.y += jumpSpeed;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "WindCurrent")
+        {
+            inWind = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "WindCurrent")
+        {
+            inWind = false;
         }
     }
 }

@@ -8,10 +8,6 @@ using UnityEditor;
 [CustomEditor(typeof(WindCurrent))]
 public class WindCurrentEditor : Editor
 {
-    [SerializeField] private float currentSize;
-
-    
-
     //Called on Property Change.
     private void OnValidate()
     {
