@@ -14,4 +14,14 @@ public class AIController : InputController
     {
         return 1f;
     }
+
+    public override bool RetrieveSwingInput()
+    {
+        return false;
+    }
+
+    public override bool RetrieveGlideInput()
+    {
+        return false;
+    }
 }

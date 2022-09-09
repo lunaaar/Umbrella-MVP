@@ -9,6 +9,7 @@ public class Jump : MonoBehaviour
     [SerializeField, Range(0f, 5)] private int maxAirJumps = 0;
     [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
+    [SerializeField, Range(0f, 5f)] private float glideMovementMultiplier = .5f;
 
     private Rigidbody2D rigidBody;
     private Ground ground;
@@ -18,14 +19,18 @@ public class Jump : MonoBehaviour
     private float defaultGravityScale;
 
     private bool desiredJump;
+    private bool desiredGlide;
     private bool onGround;
     private bool inWind;
+
+    private Animator animator;
 
     // Start is called before the first frame update
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
+        animator = GetComponent<Animator>();
 
         defaultGravityScale = 1f;
         inWind = false;
@@ -35,6 +40,7 @@ public class Jump : MonoBehaviour
     void Update()
     {
         desiredJump |= input.RetrieveJumpInput();
+        desiredGlide = input.RetrieveGlideInput();
     }
 
     private void FixedUpdate()
@@ -45,20 +51,33 @@ public class Jump : MonoBehaviour
         if (onGround)
         {
             jumpPhase = 0;
+
+            animator.SetBool("isGliding", false);
         }
 
         if (desiredJump)
         {
             desiredJump = false;
             JumpAction();
+
+            animator.SetBool("isGliding", false);
         }
 
         if (inWind)
         {
+            animator.SetBool("isGliding", false);
+
             rigidBody.gravityScale = defaultGravityScale;
+        }
+        else if(desiredGlide && !onGround)
+        {
+            rigidBody.gravityScale = glideMovementMultiplier;
+            animator.SetBool("isGliding", true);
         }
         else
         {
+            animator.SetBool("isGliding", false);
+
             if (rigidBody.velocity.y > 0)
             {
                 rigidBody.gravityScale = upwardMovementMultiplier;
@@ -72,6 +91,7 @@ public class Jump : MonoBehaviour
                 rigidBody.gravityScale = defaultGravityScale;
             }
         }
+        
 
         rigidBody.velocity = velocity;
     }

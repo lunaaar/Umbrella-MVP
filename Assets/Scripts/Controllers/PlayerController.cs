@@ -15,4 +15,14 @@ public class PlayerController : InputController
     {
         return Input.GetAxisRaw("Horizontal");
     }
+
+    public override bool RetrieveSwingInput()
+    {
+        return Input.GetKeyDown(KeyCode.Q);
+    }
+
+    public override bool RetrieveGlideInput()
+    {
+        return Input.GetKey(KeyCode.LeftShift);
+    }
 }

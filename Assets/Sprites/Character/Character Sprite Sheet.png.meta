@@ -104,7 +104,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0001_0
+      name: Character Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8dc372172a92140a15cea3e638ebcf
+      internalID: 866629838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 40
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27aa8d1d6a4ee884aa8a417ecf975529
+      internalID: 2092551458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 40
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 623f33f59a6401742890d8af6176350f
+      internalID: 1932368467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 40
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 357fe7a0be06ebb48a6ed13d46095faa
+      internalID: 1446147408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15f568c4fecb3a5418bd6d521c61bbfd
-      internalID: -1585944178
+      spriteID: d559c60472b43d34db70da00005f996e
+      internalID: -1405357185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0001_1
+      name: Character Sprite Sheet_5
       rect:
         serializedVersion: 2
         x: 40
@@ -139,14 +223,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1029cccbc174ff4bbf920ecce306d6c
-      internalID: -1437470454
+      spriteID: aeb0134a389f6d044a83743631ee09ba
+      internalID: 281502630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0001_2
+      name: Character Sprite Sheet_6
       rect:
         serializedVersion: 2
         x: 80
@@ -160,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 989b2dd8833a183429ec505fb0657fb8
-      internalID: 464139828
+      spriteID: 82d90e420faf6934a9af7fa5265d150b
+      internalID: 260222840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0001_3
+      name: Character Sprite Sheet_7
       rect:
         serializedVersion: 2
         x: 120
@@ -181,8 +265,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03a3fd6d04b2f01409b87b6e67c48f2e
-      internalID: -1159820010
+      spriteID: 3eedb8f2eea858244b8e603740d9546e
+      internalID: 1868912873
       vertices: []
       indices: 
       edges: []
@@ -198,10 +282,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-0001_0: -1585944178
-      Sprite-0001_3: -1159820010
-      Sprite-0001_1: -1437470454
-      Sprite-0001_2: 464139828
+      Character Sprite Sheet_2: 1932368467
+      Character Sprite Sheet_0: 866629838
+      Character Sprite Sheet_4: -1405357185
+      Character Sprite Sheet_1: 2092551458
+      Character Sprite Sheet_3: 1446147408
+      Character Sprite Sheet_5: 281502630
+      Character Sprite Sheet_7: 1868912873
+      Character Sprite Sheet_6: 260222840
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
