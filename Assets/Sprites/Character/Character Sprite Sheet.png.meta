@@ -108,7 +108,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 40
+        y: 80
         width: 40
         height: 40
       alignment: 0
@@ -129,7 +129,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 40
-        y: 40
+        y: 80
         width: 40
         height: 40
       alignment: 0
@@ -150,7 +150,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 40
+        y: 80
         width: 40
         height: 40
       alignment: 0
@@ -171,7 +171,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 40
+        y: 80
         width: 40
         height: 40
       alignment: 0
@@ -192,7 +192,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 40
         width: 40
         height: 40
       alignment: 0
@@ -213,7 +213,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 40
-        y: 0
+        y: 40
         width: 40
         height: 40
       alignment: 0
@@ -234,7 +234,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 0
+        y: 40
         width: 40
         height: 40
       alignment: 0
@@ -255,7 +255,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 0
+        y: 40
         width: 40
         height: 40
       alignment: 0
@@ -267,6 +267,90 @@ TextureImporter:
       bones: []
       spriteID: 3eedb8f2eea858244b8e603740d9546e
       internalID: 1868912873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 720d8e003da8e9c49a290afb099f1163
+      internalID: -1802712387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2999edaa1cc2da7458be78f4032f9802
+      internalID: 578825362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8599fba432ca74199c1fa6dc644ef2
+      internalID: 1149246397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a3c57fdb6b9cd48b2a131d5b38b1ae
+      internalID: -1231535041
       vertices: []
       indices: 
       edges: []
@@ -285,11 +369,15 @@ TextureImporter:
       Character Sprite Sheet_2: 1932368467
       Character Sprite Sheet_0: 866629838
       Character Sprite Sheet_4: -1405357185
+      Character Sprite Sheet_11: -1231535041
       Character Sprite Sheet_1: 2092551458
       Character Sprite Sheet_3: 1446147408
       Character Sprite Sheet_5: 281502630
       Character Sprite Sheet_7: 1868912873
       Character Sprite Sheet_6: 260222840
+      Character Sprite Sheet_9: 578825362
+      Character Sprite Sheet_8: -1802712387
+      Character Sprite Sheet_10: 1149246397
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
