@@ -23,6 +23,8 @@ public class Jump : MonoBehaviour
     private bool onGround;
     private bool inWind;
 
+    private AreaEffector2D windCurrent;
+
     private Animator animator;
 
     // Start is called before the first frame update
@@ -68,11 +70,16 @@ public class Jump : MonoBehaviour
             animator.SetBool("isGliding", false);
 
             rigidBody.gravityScale = defaultGravityScale;
+
+            if (desiredGlide)
+            {
+                windCurrent.enabled = true;
+            }
         }
         else if(desiredGlide && !onGround)
         {
-            rigidBody.gravityScale = glideMovementMultiplier;
             animator.SetBool("isGliding", true);
+            rigidBody.gravityScale = glideMovementMultiplier;
         }
         else
         {
@@ -116,6 +123,7 @@ public class Jump : MonoBehaviour
         if(collision.tag == "WindCurrent")
         {
             inWind = true;
+            windCurrent = collision.transform.GetComponent<AreaEffector2D>();
         }
     }
 
@@ -124,6 +132,7 @@ public class Jump : MonoBehaviour
         if (collision.tag == "WindCurrent")
         {
             inWind = false;
+            windCurrent.enabled = false;
         }
     }
 }
