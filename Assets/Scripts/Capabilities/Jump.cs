@@ -11,6 +11,10 @@ public class Jump : MonoBehaviour
     [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
     [SerializeField, Range(0f, 5f)] private float glideMovementMultiplier = .5f;
 
+
+    [SerializeField, Range(0f, 1f)] private float groundCoyoteTimer = 0.2f;
+    [SerializeField, Range(0f, 1f)] private float airCoyoteTimer = 0.2f;
+
     private Rigidbody2D rigidBody;
     private Ground ground;
     private Vector2 velocity;
@@ -42,6 +46,8 @@ public class Jump : MonoBehaviour
     void Update()
     {
         desiredJump |= input.RetrieveJumpInput();
+        // |= is equal to x = x OR input. So once its set to true, it will just stay true. You would have to set in manually back to false.
+
         desiredGlide = input.RetrieveGlideInput();
     }
 
@@ -50,17 +56,36 @@ public class Jump : MonoBehaviour
         onGround = ground.GetOnGround();
         velocity = rigidBody.velocity;
 
+        if (desiredJump)
+        {
+            desiredJump = false;
+            airCoyoteTimer = 0.2f;
+        }
+        else
+        {
+            if(airCoyoteTimer > -1)
+            {
+                airCoyoteTimer -= Time.deltaTime;
+            }
+        }
+
         if (onGround)
         {
             jumpPhase = 0;
 
             animator.SetBool("isGliding", false);
+
+            groundCoyoteTimer = 0.2f;
+        }
+        else
+        {
+            groundCoyoteTimer -= Time.deltaTime;
         }
 
-        if (desiredJump)
+        if (onGround && airCoyoteTimer > 0)
         {
-            desiredJump = false;
             JumpAction();
+            airCoyoteTimer = 0;
 
             animator.SetBool("isGliding", false);
         }
@@ -78,11 +103,22 @@ public class Jump : MonoBehaviour
         }
         else if(desiredGlide && !onGround)
         {
+            //Regular Gliding
             animator.SetBool("isGliding", true);
-            rigidBody.gravityScale = glideMovementMultiplier;
+
+            if (rigidBody.velocity.y > 0)
+            {
+                rigidBody.gravityScale = defaultGravityScale;
+            }
+            else if (rigidBody.velocity.y < 0)
+            {
+                rigidBody.gravityScale = glideMovementMultiplier;
+            }
+            
         }
         else
         {
+            //Regular Jumping
             animator.SetBool("isGliding", false);
 
             if (rigidBody.velocity.y > 0)
@@ -98,14 +134,16 @@ public class Jump : MonoBehaviour
                 rigidBody.gravityScale = defaultGravityScale;
             }
         }
-        
+
+        //Debug.Log(rigidBody.velocity);
 
         rigidBody.velocity = velocity;
     }
 
     private void JumpAction()
     {
-        if(onGround || jumpPhase < maxAirJumps)
+        
+        if(groundCoyoteTimer > 0f || jumpPhase < maxAirJumps)
         {
             jumpPhase += 1;
             float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
@@ -129,10 +167,12 @@ public class Jump : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        
         if (collision.tag == "WindCurrent")
         {
             inWind = false;
             windCurrent.enabled = false;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, Mathf.Min(rigidBody.velocity.y, 8f));
         }
     }
 }
