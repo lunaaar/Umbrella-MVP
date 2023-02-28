@@ -39,12 +39,12 @@ public class WindCurrentEditor : Editor
                 if (GUILayout.Button("Set Current Up"))
                 {
                     windCurrent.GetComponentInChildren<AreaEffector2D>().forceAngle = 90;
-                    //windCurrent.GetComponentInChildren<SpriteRenderer>().flipY = false;
+                    windCurrent.GetComponentInChildren<SpriteRenderer>().flipY = false;
                 }
                 if (GUILayout.Button("Set Current Down"))
                 {
                     windCurrent.GetComponentInChildren<AreaEffector2D>().forceAngle = 270;
-                    //windCurrent.GetComponentInChildren<SpriteRenderer>().flipY = true;
+                    windCurrent.GetComponentInChildren<SpriteRenderer>().flipY = true;
                 }
             }
         }

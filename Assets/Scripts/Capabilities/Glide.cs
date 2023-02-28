@@ -15,6 +15,8 @@ public class Glide : MonoBehaviour
     private bool desiredGlide;
     private bool onGround;
 
+    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,6 +42,7 @@ public class Glide : MonoBehaviour
         }
         else
         {
+            
             rigidBody.gravityScale = defaultGravityScale;
         }
     }

@@ -22,14 +22,18 @@ public class Jump : MonoBehaviour
     private int jumpPhase;
     private float defaultGravityScale;
 
-    private bool desiredJump;
-    private bool desiredGlide;
-    private bool onGround;
-    private bool inWind;
+    [SerializeField] private bool desiredJump;
+    [SerializeField] private bool desiredGlide;
+    [SerializeField] private bool onGround;
+    [SerializeField] private bool inWind;
+
+    //public bool glideEnabled = true;
 
     private AreaEffector2D windCurrent;
 
     private Animator animator;
+
+    [SerializeField] private GameObject balloon;
 
     // Start is called before the first frame update
     void Awake()
@@ -40,6 +44,7 @@ public class Jump : MonoBehaviour
 
         defaultGravityScale = 1f;
         inWind = false;
+        desiredGlide = false;
     }
 
     // Update is called once per frame
@@ -47,7 +52,6 @@ public class Jump : MonoBehaviour
     {
         desiredJump |= input.RetrieveJumpInput();
         // |= is equal to x = x OR input. So once its set to true, it will just stay true. You would have to set in manually back to false.
-
         desiredGlide = input.RetrieveGlideInput();
     }
 
@@ -55,6 +59,7 @@ public class Jump : MonoBehaviour
     {
         onGround = ground.GetOnGround();
         velocity = rigidBody.velocity;
+        animator.SetInteger("direction", (int)velocity.x);
 
         if (desiredJump)
         {
@@ -92,19 +97,27 @@ public class Jump : MonoBehaviour
 
         if (inWind)
         {
-            animator.SetBool("isGliding", false);
 
             rigidBody.gravityScale = defaultGravityScale;
 
             if (desiredGlide)
             {
+                animator.SetBool("isGliding", true);
+                balloon.SetActive(true);
                 windCurrent.enabled = true;
+            }
+            else
+            {
+                balloon.SetActive(false);
+                animator.SetBool("isGliding", false);
             }
         }
         else if(desiredGlide && !onGround)
         {
             //Regular Gliding
             animator.SetBool("isGliding", true);
+
+            balloon.SetActive(true);
 
             if (rigidBody.velocity.y > 0)
             {
@@ -121,6 +134,7 @@ public class Jump : MonoBehaviour
             //Regular Jumping
             animator.SetBool("isGliding", false);
 
+            balloon.SetActive(false);
             if (rigidBody.velocity.y > 0)
             {
                 rigidBody.gravityScale = upwardMovementMultiplier;

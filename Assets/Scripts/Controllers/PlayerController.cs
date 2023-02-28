@@ -18,11 +18,11 @@ public class PlayerController : InputController
 
     public override bool RetrieveSwingInput()
     {
-        return Input.GetKeyDown(KeyCode.Q);
+        return Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick1Button5);
     }
 
     public override bool RetrieveGlideInput()
     {
-        return Input.GetKey(KeyCode.LeftShift);
+        return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Joystick1Button2);
     }
 }

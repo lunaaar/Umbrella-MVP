@@ -9,6 +9,11 @@ public class Ground : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.collider.tag == "Hazards")
+        {
+            Debug.Log("DEATH");
+        }
+        
         EvaluateCollision(collision);
         RetrieveFriction(collision);
     }

@@ -9,11 +9,6 @@ public class Move : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
     [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
 
-    [SerializeField] private GameObject frontHand;
-    [SerializeField] private GameObject backHand;
-    [SerializeField] private Sprite handRunning;
-    [SerializeField] private Sprite hand;
-
     private Vector2 direction;
     private Vector2 desiredVelocity;
     private Vector2 velocity;
@@ -49,21 +44,5 @@ public class Move : MonoBehaviour
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
 
         rigidBody.velocity = velocity;
-
-        // If we are standing still.
-        if(direction.x == 0)
-        {
-            frontHand.GetComponent<SpriteRenderer>().sprite = hand;
-            backHand.GetComponent<SpriteRenderer>().sprite = hand;
-        }
-        // If we are moving left or right.
-        else
-        {
-            frontHand.GetComponent<SpriteRenderer>().sprite = handRunning;
-            backHand.GetComponent<SpriteRenderer>().sprite = handRunning;
-
-            if(direction.x > 0) rigidBody.transform.localEulerAngles = new Vector3(0, 0, 0);
-            if(direction.x < 0) rigidBody.transform.localEulerAngles = new Vector3(0, 180, 0);
-        }
     }
 }
