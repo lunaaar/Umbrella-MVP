@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
+    public Transform respawnPoint;
+    
     private bool onGround;
     private float friction;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.name == "EnableGlide")
+        {
+            respawnPoint.transform.position = collision.transform.position;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.tag == "Hazards")
         {
-            Debug.Log("DEATH");
+            this.transform.position = respawnPoint.transform.position;
         }
         
         EvaluateCollision(collision);

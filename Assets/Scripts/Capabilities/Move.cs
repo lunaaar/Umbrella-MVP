@@ -10,6 +10,9 @@ public class Move : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
 
     private Vector2 direction;
+
+    public Animator animator;
+
     private Vector2 desiredVelocity;
     private Vector2 velocity;
     private Rigidbody2D rigidBody;
@@ -24,12 +27,22 @@ public class Move : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
+        animator.GetComponent<Animator>();
+        animator.SetBool("facingLeft", false);
     }
 
     // Update is called once per frame
     void Update()
     {
         direction.x = input.RetrieveMoveInput();
+        if (direction.x > 0)
+        {
+            animator.SetBool("facingLeft", false);
+        }
+        else if (direction.x < 0)
+        {
+            animator.SetBool("facingLeft", true);
+        }
         desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0);
     }
 

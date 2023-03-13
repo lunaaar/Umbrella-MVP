@@ -200,4 +200,4 @@ using UnityEngine.InputSystem;
         {
             _swingPoints.Remove(point);
         }
-    }
+}

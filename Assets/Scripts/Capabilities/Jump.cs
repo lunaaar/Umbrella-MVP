@@ -21,13 +21,14 @@ public class Jump : MonoBehaviour
 
     private int jumpPhase;
     private float defaultGravityScale;
+    private bool falling;
 
     [SerializeField] private bool desiredJump;
     [SerializeField] private bool desiredGlide;
     [SerializeField] private bool onGround;
     [SerializeField] private bool inWind;
 
-    //public bool glideEnabled = true;
+    public bool glideEnabled = false;
 
     private AreaEffector2D windCurrent;
 
@@ -53,6 +54,14 @@ public class Jump : MonoBehaviour
         desiredJump |= input.RetrieveJumpInput();
         // |= is equal to x = x OR input. So once its set to true, it will just stay true. You would have to set in manually back to false.
         desiredGlide = input.RetrieveGlideInput();
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            Debug.Log("UP");
+            falling = true;
+            rigidBody.gravityScale = defaultGravityScale * 10;
+            //rigidBody.gravityScale = downwardMovementMultiplier;
+        }
     }
 
     private void FixedUpdate()
@@ -81,6 +90,8 @@ public class Jump : MonoBehaviour
             animator.SetBool("isGliding", false);
 
             groundCoyoteTimer = 0.2f;
+            rigidBody.gravityScale = defaultGravityScale;
+            falling = false;
         }
         else
         {
@@ -100,7 +111,7 @@ public class Jump : MonoBehaviour
 
             rigidBody.gravityScale = defaultGravityScale;
 
-            if (desiredGlide)
+            if (desiredGlide && glideEnabled)
             {
                 animator.SetBool("isGliding", true);
                 balloon.SetActive(true);
@@ -112,7 +123,7 @@ public class Jump : MonoBehaviour
                 animator.SetBool("isGliding", false);
             }
         }
-        else if(desiredGlide && !onGround)
+        else if(desiredGlide && !onGround && glideEnabled)
         {
             //Regular Gliding
             animator.SetBool("isGliding", true);
@@ -135,11 +146,15 @@ public class Jump : MonoBehaviour
             animator.SetBool("isGliding", false);
 
             balloon.SetActive(false);
-            if (rigidBody.velocity.y > 0)
+            if (rigidBody.velocity.y > 0 && !falling)
             {
                 rigidBody.gravityScale = upwardMovementMultiplier;
             }
-            else if (rigidBody.velocity.y < 0)
+            /**else if (rigidBody.velocity.y < 0)
+            {
+                rigidBody.gravityScale = downwardMovementMultiplier;
+            }*/
+            else if (falling)
             {
                 rigidBody.gravityScale = downwardMovementMultiplier;
             }
@@ -148,15 +163,11 @@ public class Jump : MonoBehaviour
                 rigidBody.gravityScale = defaultGravityScale;
             }
         }
-
-        //Debug.Log(rigidBody.velocity);
-
         rigidBody.velocity = velocity;
     }
 
-    private void JumpAction()
+    public void JumpAction()
     {
-        
         if(groundCoyoteTimer > 0f || jumpPhase < maxAirJumps)
         {
             jumpPhase += 1;
@@ -176,6 +187,10 @@ public class Jump : MonoBehaviour
         {
             inWind = true;
             windCurrent = collision.transform.GetComponent<AreaEffector2D>();
+        }
+        else if(collision.name == "EnableGlide")
+        {
+            glideEnabled = true;
         }
     }
 
